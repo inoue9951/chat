@@ -45,4 +45,22 @@ RSpec.describe SessionsController, type: :controller do
       end
     end
   end
+
+  describe 'Delete#destroy' do
+    before do
+      post :create, params: params
+      delete :destroy
+    end
+
+    let(:user) { FactoryGirl.create(:user) }
+    let(:params) { { session: { user_id: user.user_id, password: user.password } } }
+
+    it 'session[:user_id]に何も格納されていない' do
+      expect(session[:user_id]).to be_nil
+    end
+
+    it 'newへリダイレクトする' do
+      expect(response).to redirect_to action: :new
+    end
+  end
 end

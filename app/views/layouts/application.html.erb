@@ -11,6 +11,11 @@
   <body>
     <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-dark">
       <span class="navbar-brand mb-0 h1">Navbar</span>
+      <% if logged_in? %>
+        <%= link_to 'ログアウト', logout_path, method: :delete, class: "nav-link ml-auto" %>
+      <% else %>
+        <%= link_to 'ログイン', login_path, class: "nav-link ml-auto" %>
+      <% end %>
     </nav>
     <div class="container">
       <%= yield %>
