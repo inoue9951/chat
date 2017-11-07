@@ -39,6 +39,12 @@ RSpec.describe User, type: :model do
     end
   end
 
+  context 'user_idの長さが8より小さい場合' do
+    it 'バリデーションが通らない' do
+      expect(build(:user, user_id: 'aaa')).not_to be_valid
+    end
+  end
+
   context 'user_idが重複している場合' do
     it 'バリデーションが通らない' do
       create(:user)

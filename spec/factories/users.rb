@@ -21,4 +21,11 @@ FactoryGirl.define do
     password 'sample_password'
     password_confirmation 'sample_password'
   end
+
+  factory :invalid_user, class: User do
+    name ''
+    user_id ''
+    password ''
+    password_confirmation ''
+  end
 end
