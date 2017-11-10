@@ -1,6 +1,6 @@
 <div class="row mt-2">
   <div class="col-md-12">
-    <h1>mypage</h1>
+    <h1>My Page</h1>
     <p>user: <%= @user.name %>でログインしています</p>
     <hr>
     <p><%= link_to 'チャットルーム作成', { controller: 'chat_rooms', action: 'new' }, class: 'btn btn-primary' %></p>
@@ -12,14 +12,20 @@
       <thead class="thead-dark">
         <tr>
           <th>title</th>
-          <th></th>
+          <th>参加状況</th>
+          <th>削除</th>
         </tr>
       </thead>
       <tbody>
         <% @chat_list.each do |room| %>
           <tr>
             <th><%= room.title %></th>
-            <td><%= link_to '参加する', '#', class: 'btn btn-primary btn-block' %></td>
+            <% unless join? room, @my_chat_list %>
+              <td><%= link_to '参加', chat_room_path(room.id), method: :patch,  class: 'btn btn-primary btn-block' %></td>
+            <% else %>
+              <td><%= link_to '退室', leave_chat_room_path(room.id), method: :delete, class: 'btn btn-danger btn-block' %></td>
+            <% end %>
+            <td><%= link_to '削除', chat_room_path(room.id), method: :delete, class: 'btn btn-danger btn-block' %></td>
           </tr>
         <% end %>
       </tbody>
@@ -35,6 +41,14 @@
           <th></th>
         </tr>
       </thead>
+      <tbody>
+        <% @my_chat_list.each do |my_room| %>
+          <tr>
+            <th><%= my_room.title %></th>
+            <td><%= link_to '入室', chat_room_path(my_room.id), class: 'btn btn-primary btn-block' %></td>
+          </tr>
+        <% end %>
+      </tbody>
     </table>
   </div>
 </div>

@@ -4,5 +4,9 @@ Rails.application.routes.draw do
   delete  '/logout', to: 'sessions#destroy'
 
   resources :users, only: [:new, :create, :show]
-  resources :chat_rooms, only: [:new, :create, :show]
+  resources :chat_rooms do
+    member do
+      delete 'leave'
+    end
+  end
 end

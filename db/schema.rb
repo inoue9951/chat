@@ -10,13 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171110063951) do
+ActiveRecord::Schema.define(version: 20171110111404) do
 
   create_table "chat_rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title", null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "chat_rooms_users", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id", null: false
+    t.bigint "chat_room_id", null: false
+    t.index ["chat_room_id"], name: "index_chat_rooms_users_on_chat_room_id"
+    t.index ["user_id"], name: "index_chat_rooms_users_on_user_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -28,4 +35,6 @@ ActiveRecord::Schema.define(version: 20171110063951) do
     t.index ["user_id"], name: "index_users_on_user_id", unique: true
   end
 
+  add_foreign_key "chat_rooms_users", "chat_rooms"
+  add_foreign_key "chat_rooms_users", "users"
 end

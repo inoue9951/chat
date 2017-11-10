@@ -20,4 +20,6 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 8 }, confirmation: :password_confirmation
   validates :password_confirmation, presence: true, length: { minimum: 8 }
+
+  has_and_belongs_to_many :chat_rooms
 end
