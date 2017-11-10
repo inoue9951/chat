@@ -15,7 +15,7 @@ RSpec.describe SessionsController, type: :controller do
   describe 'POST#create' do
     before { post :create, params: params }
 
-    let(:user) { FactoryGirl.create(:user) }
+    let(:user) { create(:user) }
 
     context 'ログインが成功した場合' do
       let(:params) { { session: { user_id: user.user_id, password: user.password } } }

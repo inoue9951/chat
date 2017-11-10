@@ -1,3 +1,40 @@
-<div class="row">
-  <h1>mypage</h1>
+<div class="row mt-2">
+  <div class="col-md-12">
+    <h1>mypage</h1>
+    <p>user: <%= @user.name %>でログインしています</p>
+    <hr>
+    <p><%= link_to 'チャットルーム作成', { controller: 'chat_rooms', action: 'new' }, class: 'btn btn-primary' %></p>
+  </div>
+
+  <div class="col-md-6">
+    <h3>全てのチャットルーム</h3>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>title</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @chat_list.each do |room| %>
+          <tr>
+            <th><%= room.title %></th>
+            <td><%= link_to '参加する', '#', class: 'btn btn-primary btn-block' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-6">
+    <h3>参加しているチャットルーム</h3>
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>title</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+  </div>
 </div>
