@@ -17,6 +17,12 @@ AllCops:
 Rails:
   Enabled: true
 
+FileName:
+  Exclude:
+    - '**/Rakefile'
+    - '**/Gemfile'
+    - '**/Capfile'
+
 Rails/HasAndBelongsToMany:
   Enabled: false
 
@@ -30,9 +36,6 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/ClassAndModuleChildren:
-  Enabled: false
-
-Style/FileName:
   Enabled: false
 
 Style/BlockComments:

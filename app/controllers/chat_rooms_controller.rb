@@ -1,4 +1,6 @@
 class ChatRoomsController < ApplicationController
+  before_action :require_login
+
   def new
   end
 
@@ -15,6 +17,7 @@ class ChatRoomsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @chat_room = ChatRoom.find(params[:id])
   end
 

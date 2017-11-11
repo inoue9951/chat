@@ -1,2 +1,11 @@
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
+
+html, body {
+  height: 100%;
+}
+
+.chat-area {
+  height: 350px;
+  overflow-y: scroll;
+}
